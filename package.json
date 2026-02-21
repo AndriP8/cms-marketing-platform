@@ -8,9 +8,13 @@
     "lint:fix": "biome check --write .",
     "typecheck": "pnpm -r typecheck",
     "test": "vitest run",
-    "clean": "rm -rf apps/web/.next apps/studio/dist"
+    "clean": "rm -rf apps/web/.next apps/studio/dist",
+    "typegen": "sanity schema extract --path=./apps/studio && sanity typegen generate",
+    "studio:dev": "pnpm --filter studio dev"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.0"
+    "@biomejs/biome": "^2.2.0",
+    "@types/node": "^25.3.0",
+    "sanity": "^3.99.0"
   }
 }

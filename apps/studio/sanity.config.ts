@@ -2,6 +2,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
+import { schemaTypes } from "./schemas";
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "";
 const dataset = process.env.SANITY_STUDIO_DATASET || "production";
@@ -17,14 +18,13 @@ export default defineConfig({
     presentationTool({
       previewUrl: {
         previewMode: {
-          enable: "/api/draft/enable",
+          enable: "/api/draft-mode/enable",
         },
       },
     }),
   ],
 
-  // Schema will be added in Phase 2
   schema: {
-    types: [],
+    types: schemaTypes,
   },
 });
