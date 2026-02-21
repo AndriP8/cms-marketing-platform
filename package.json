@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "cms-marketing-platform",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run",
+    "clean": "rm -rf apps/web/.next apps/studio/dist"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.0"
+  }
+}

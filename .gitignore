@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+dist/
+.sanity/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+*.swp
+*.swo
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Debug
+npm-debug.log*
+pnpm-debug.log*
+
+# Turbopack
+.turbo/
+
+# Type generation
+*.tsbuildinfo
