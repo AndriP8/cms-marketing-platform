@@ -1,3 +1,4 @@
+import { draftMode } from "next/headers";
 import type { QueryParams } from "next-sanity";
 import { createClient } from "next-sanity";
 import { apiVersion, dataset, projectId } from "./config";
@@ -24,7 +25,28 @@ export const sanityFetch = async <const QueryString extends string>({
   params?: QueryParams | Promise<QueryParams>;
   [key: string]: unknown;
 }) => {
-  const data = await client.fetch(query, params, options);
+  let isDraftMode = false;
+  try {
+    isDraftMode = (await draftMode()).isEnabled;
+  } catch {
+    // draftMode() throws outside of Request context
+  }
+
+  if (isDraftMode && !process.env.SANITY_API_READ_TOKEN) {
+    console.warn(
+      "Draft mode is enabled, but SANITY_API_READ_TOKEN is not set. Drafts may not be fetched.",
+    );
+  }
+
+  const fetchClient = isDraftMode
+    ? client.withConfig({
+        token: process.env.SANITY_API_READ_TOKEN,
+        perspective: "previewDrafts",
+        stega: true,
+      })
+    : client;
+
+  const data = await fetchClient.fetch(query, params, options);
   return { data };
 };
 
