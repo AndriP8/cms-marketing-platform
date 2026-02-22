@@ -1,20 +1,11 @@
 import Link from "next/link";
 
-export interface PricingPlan {
-  _key: string;
-  name?: string | null;
-  price?: string | null;
-  interval?: string | null;
-  features?: string[] | null;
-  highlighted?: boolean | null;
-  ctaLabel?: string | null;
-  ctaHref?: string | null;
-}
+import type { PageBlocks } from "./BlockRenderer";
 
-export interface PricingBlockProps {
-  heading?: string | null;
-  plans?: PricingPlan[] | null;
-}
+export type PricingBlockProps = Extract<
+  NonNullable<PageBlocks>[number],
+  { _type: "pricing" }
+>;
 
 export function PricingBlock({ heading, plans }: PricingBlockProps) {
   return (
@@ -32,7 +23,7 @@ export function PricingBlock({ heading, plans }: PricingBlockProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
             {plans.map((plan) => (
               <div
-                key={plan._key}
+                key={plan.name}
                 className={`relative flex flex-col p-8 rounded-3xl shadow-xl transition-transform duration-300 hover:-translate-y-2 ${
                   plan.highlighted
                     ? "bg-indigo-600 dark:bg-indigo-600 text-white border-2 border-indigo-500 scale-105 z-10"
@@ -81,7 +72,7 @@ export function PricingBlock({ heading, plans }: PricingBlockProps) {
                 <ul className="flex-1 space-y-4 mb-8">
                   {plan.features?.map((feature, idx) => (
                     <li
-                      key={`${plan._key}-feature-${idx}`}
+                      key={`${plan.name}-feature-${idx}`}
                       className="flex items-start gap-3"
                     >
                       <svg

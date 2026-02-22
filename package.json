@@ -9,7 +9,7 @@
     "typecheck": "pnpm -r typecheck",
     "test": "vitest run",
     "clean": "rm -rf apps/web/.next apps/studio/dist",
-    "typegen": "sanity schema extract --path=./apps/studio && sanity typegen generate",
+    "typegen": "pnpm --filter studio exec sanity schema extract --path=../../schema.json && sanity typegen generate",
     "studio:dev": "pnpm --filter studio dev"
   },
   "devDependencies": {

@@ -1,14 +1,10 @@
-export interface FeatureItem {
-  _key: string;
-  icon?: string | null;
-  title?: string | null;
-  body?: string | null;
-}
+import { DynamicIcon, type IconName } from "lucide-react/dynamic";
+import type { PageBlocks } from "./BlockRenderer";
 
-export interface FeatureGridBlockProps {
-  heading?: string | null;
-  features?: FeatureItem[] | null;
-}
+export type FeatureGridBlockProps = Extract<
+  NonNullable<PageBlocks>[number],
+  { _type: "featureGrid" }
+>;
 
 export function FeatureGridBlock({ heading, features }: FeatureGridBlockProps) {
   return (
@@ -26,11 +22,18 @@ export function FeatureGridBlock({ heading, features }: FeatureGridBlockProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {features.map((feature) => (
               <div
-                key={feature._key}
+                key={feature.title}
                 className="group p-8 bg-white dark:bg-zinc-950 rounded-2xl shadow-sm border border-zinc-100 dark:border-zinc-800 hover:shadow-xl hover:border-indigo-100 dark:hover:border-indigo-900 transition-all duration-300 transform hover:-translate-y-1"
               >
                 <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/40 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                  <span className="text-2xl">{feature.icon || "✨"}</span>
+                  {feature.icon ? (
+                    <DynamicIcon
+                      name={feature.icon as IconName}
+                      className="w-8 h-8"
+                    />
+                  ) : (
+                    <span className="text-2xl">✨</span>
+                  )}
                 </div>
                 <h3 className="text-xl font-semibold text-zinc-900 dark:text-white mb-4">
                   {feature.title}

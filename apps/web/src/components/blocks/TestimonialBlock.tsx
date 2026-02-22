@@ -1,15 +1,11 @@
-export interface TestimonialItem {
-  _key: string;
-  quote?: string | null;
-  author?: string | null;
-  role?: string | null;
-  avatar?: Record<string, unknown>;
-}
+import Image from "next/image";
+import { urlFor } from "@/sanity/image";
+import type { PageBlocks } from "./BlockRenderer";
 
-export interface TestimonialBlockProps {
-  heading?: string | null;
-  testimonials?: TestimonialItem[] | null;
-}
+export type TestimonialBlockProps = Extract<
+  NonNullable<PageBlocks>[number],
+  { _type: "testimonial" }
+>;
 
 export function TestimonialBlock({
   heading,
@@ -30,14 +26,14 @@ export function TestimonialBlock({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
               <div
-                key={testimonial._key}
+                key={testimonial.author}
                 className="bg-white dark:bg-zinc-950 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800"
               >
                 <div className="flex text-amber-400 mb-6">
                   {/* Star rating icons */}
                   {[...Array(5)].map((_, i) => (
                     <svg
-                      key={`star-${i}-${testimonial._key}`}
+                      key={`star-${i}-${testimonial.author}`}
                       aria-hidden="true"
                       className="w-5 h-5"
                       fill="currentColor"
@@ -53,9 +49,13 @@ export function TestimonialBlock({
                 <div className="flex items-center gap-4 mt-auto">
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 flex shrink-0">
                     {testimonial.avatar ? (
-                      <div className="w-full h-full text-xs flex items-center justify-center text-zinc-400 text-center">
-                        Sanity Img
-                      </div>
+                      <Image
+                        src={urlFor(testimonial.avatar).url()}
+                        alt={testimonial.author || "Avatar"}
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-cover"
+                      />
                     ) : (
                       <svg
                         aria-hidden="true"

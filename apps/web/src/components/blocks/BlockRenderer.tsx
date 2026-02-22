@@ -1,17 +1,14 @@
+import type { PAGE_QUERYResult } from "@/sanity/types";
 import { FAQBlock } from "./FAQBlock";
 import { FeatureGridBlock } from "./FeatureGridBlock";
 import { HeroBlock } from "./HeroBlock";
 import { PricingBlock } from "./PricingBlock";
 import { TestimonialBlock } from "./TestimonialBlock";
 
-export type SanityBlock = {
-  _type: string;
-  _key: string;
-  [key: string]: unknown;
-};
+export type PageBlocks = NonNullable<PAGE_QUERYResult>["blocks"];
 
 interface BlockRendererProps {
-  blocks: SanityBlock[] | null;
+  blocks: PageBlocks;
 }
 
 export function BlockRenderer({ blocks }: BlockRendererProps) {
@@ -31,17 +28,19 @@ export function BlockRenderer({ blocks }: BlockRendererProps) {
             return <FAQBlock key={block._key} {...block} />;
           case "testimonial":
             return <TestimonialBlock key={block._key} {...block} />;
-          default:
-            console.warn(`Unknown block type: ${block._type}`);
+          default: {
+            const unknownBlock = block as { _type: string; _key: string };
+            console.warn(`Unknown block type: ${unknownBlock._type}`);
             return (
               <div
-                key={block._key}
+                key={unknownBlock._key}
                 className="p-4 m-4 bg-yellow-50 text-yellow-800 border border-yellow-200 rounded text-sm max-w-2xl mx-auto w-full"
               >
                 <strong>Preview:</strong> Unknown block type{" "}
-                <code>{block._type}</code>.
+                <code>{unknownBlock._type}</code>.
               </div>
             );
+          }
         }
       })}
     </div>

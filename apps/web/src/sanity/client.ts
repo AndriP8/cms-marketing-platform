@@ -1,3 +1,4 @@
+import type { QueryParams } from "next-sanity";
 import { createClient } from "next-sanity";
 import { apiVersion, dataset, projectId } from "./config";
 
@@ -14,13 +15,13 @@ export const client = createClient({
   },
 });
 
-export const sanityFetch = async ({
+export const sanityFetch = async <const QueryString extends string>({
   query,
   params = {},
   ...options
 }: {
-  query: string;
-  params?: Record<string, unknown>;
+  query: QueryString;
+  params?: QueryParams | Promise<QueryParams>;
   [key: string]: unknown;
 }) => {
   const data = await client.fetch(query, params, options);

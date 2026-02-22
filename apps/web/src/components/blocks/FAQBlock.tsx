@@ -1,13 +1,9 @@
-export interface FAQItem {
-  _key: string;
-  question?: string | null;
-  answer?: string | null;
-}
+import type { PageBlocks } from "./BlockRenderer";
 
-export interface FAQBlockProps {
-  heading?: string | null;
-  items?: FAQItem[] | null;
-}
+export type FAQBlockProps = Extract<
+  NonNullable<PageBlocks>[number],
+  { _type: "faq" }
+>;
 
 export function FAQBlock({ heading, items }: FAQBlockProps) {
   return (
@@ -25,7 +21,7 @@ export function FAQBlock({ heading, items }: FAQBlockProps) {
           <div className="space-y-6">
             {items.map((item) => (
               <details
-                key={item._key}
+                key={item.question}
                 className="group border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 rounded-2xl p-6 shadow-sm [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-zinc-900 dark:text-white">

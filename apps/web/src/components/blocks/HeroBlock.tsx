@@ -1,12 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 
-export interface HeroBlockProps {
-  heading?: string | null;
-  subheading?: string | null;
-  ctaLabel?: string | null;
-  ctaHref?: string | null;
-  image?: Record<string, unknown>;
-}
+import { urlFor } from "@/sanity/image";
+
+import type { PageBlocks } from "./BlockRenderer";
+
+export type HeroBlockProps = Extract<
+  NonNullable<PageBlocks>[number],
+  { _type: "hero" }
+>;
 
 export function HeroBlock({
   heading,
@@ -46,11 +48,15 @@ export function HeroBlock({
           <div className="w-full px-4 lg:w-7/12">
             <div className="relative z-10 lg:ml-auto max-w-162.5">
               {image ? (
-                // Assuming we have a Sanity imageUrl builder mechanism, but keeping fallback generic
                 <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-2xl bg-zinc-100 dark:bg-zinc-800">
-                  <div className="absolute inset-0 flex items-center justify-center text-zinc-400">
-                    Sanity Image rendering will go here
-                  </div>
+                  <Image
+                    src={urlFor(image).url()}
+                    alt={heading || "Hero Image"}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
+                  />
                 </div>
               ) : (
                 <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-linear-to-tr from-indigo-100 to-amber-50 dark:from-zinc-900 dark:to-zinc-800 border border-zinc-200 dark:border-zinc-800">
