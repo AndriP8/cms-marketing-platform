@@ -3,6 +3,11 @@ import { defineQuery } from "next-sanity";
 export const SITE_CONFIG_QUERY = defineQuery(`
   *[_type == "siteConfig"][0] {
     ...,
+    defaultSeo {
+      title,
+      description,
+      ogImage { asset->{url} }
+    },
     nav[] {
       ...,
     }
@@ -18,7 +23,11 @@ export const ALL_PAGE_SLUGS_QUERY = defineQuery(`
 export const PAGE_QUERY = defineQuery(`
   *[_type == "page" && slug.current == $slug][0] {
     title,
-    seo,
+    seo {
+      title,
+      description,
+      ogImage { asset->{url} }
+    },
     blocks[] {
       ...,
       _type == "hero" => {
