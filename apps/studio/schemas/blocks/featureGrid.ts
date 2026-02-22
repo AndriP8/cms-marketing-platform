@@ -30,8 +30,8 @@ export const featureGridBlock = defineType({
           fields: [
             defineField({
               name: "icon",
-              title: "Icon Name",
-              type: "string",
+              title: "Icon",
+              type: "lucide-icon",
               description: "Name of the icon (e.g., 'star', 'check')",
             }),
             defineField({
