@@ -12,6 +12,13 @@ export const pricingBlock = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "sectionId",
+      title: "Section ID",
+      description:
+        "Optional ID used for anchor navigation (e.g. 'pricing' for /#pricing)",
+      type: "string",
+    }),
+    defineField({
       name: "plans",
       title: "Plans",
       type: "array",

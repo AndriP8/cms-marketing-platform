@@ -11,6 +11,7 @@ export type HeroBlockProps = Extract<
 >;
 
 export function HeroBlock({
+  sectionId,
   heading,
   subheading,
   ctaLabel,
@@ -18,7 +19,10 @@ export function HeroBlock({
   image,
 }: HeroBlockProps) {
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-zinc-950 pt-30 pb-16 md:pt-37.5 md:pb-30">
+    <section
+      id={sectionId || "hero"}
+      className="relative overflow-hidden bg-white dark:bg-zinc-950 pt-30 pb-16 md:pt-37.5 md:pb-30"
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center -mx-4">
           <div className="w-full px-4 lg:w-5/12">

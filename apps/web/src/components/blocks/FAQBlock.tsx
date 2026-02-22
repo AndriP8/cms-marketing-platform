@@ -5,9 +5,12 @@ export type FAQBlockProps = Extract<
   { _type: "faq" }
 >;
 
-export function FAQBlock({ heading, items }: FAQBlockProps) {
+export function FAQBlock({ sectionId, heading, items }: FAQBlockProps) {
   return (
-    <section className="py-24 bg-zinc-50 dark:bg-zinc-900">
+    <section
+      id={sectionId || "faq"}
+      className="py-24 bg-zinc-50 dark:bg-zinc-900"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         {heading && (
           <div className="text-center mb-16">

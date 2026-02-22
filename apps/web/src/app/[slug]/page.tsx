@@ -10,9 +10,14 @@ export async function generateStaticParams() {
   });
 
   const slugs = data || [];
-  return slugs.map((slugObj: { slug: string }) => ({
-    slug: slugObj.slug,
-  }));
+  return slugs
+    .filter(
+      (slugObj): slugObj is { slug: string } =>
+        typeof slugObj.slug === "string",
+    )
+    .map((slugObj) => ({
+      slug: slugObj.slug,
+    }));
 }
 
 export async function generateMetadata(props: {

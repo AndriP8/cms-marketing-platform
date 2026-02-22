@@ -61,6 +61,12 @@ export const siteConfig = defineType({
               validation: (Rule) => Rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              title: "label",
+              subtitle: "href",
+            },
+          },
         }),
       ],
     }),

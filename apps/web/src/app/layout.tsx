@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SanityLive } from "@/sanity/client";
+import { Footer } from "@/components/shared/Footer";
+import { Header } from "@/components/shared/Header";
+import { SanityLive, sanityFetch } from "@/sanity/client";
+import { SITE_CONFIG_QUERY } from "@/sanity/queries";
 import SanityVisualEditing from "@/sanity/VisualEditing";
 
 const geistSans = Geist({
@@ -18,23 +21,29 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "CMS Marketing Platform",
-    template: "%s | CMS Marketing Platform",
+    default: "Forge",
+    template: "%s | Forge",
   },
-  description: "A production-grade CMS-driven SaaS marketing platform",
+  description: "Forge - Build Better Products, Faster",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { data: siteConfig } = await sanityFetch({
+    query: SITE_CONFIG_QUERY,
+  });
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen`}
       >
-        {children}
+        {siteConfig && <Header siteConfig={siteConfig} />}
+        <main className="grow pt-16">{children}</main>
+        {siteConfig && <Footer siteConfig={siteConfig} />}
         <SanityLive />
         <SanityVisualEditing />
       </body>

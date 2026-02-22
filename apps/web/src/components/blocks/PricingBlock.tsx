@@ -7,9 +7,12 @@ export type PricingBlockProps = Extract<
   { _type: "pricing" }
 >;
 
-export function PricingBlock({ heading, plans }: PricingBlockProps) {
+export function PricingBlock({ sectionId, heading, plans }: PricingBlockProps) {
   return (
-    <section className="py-24 bg-white dark:bg-zinc-950">
+    <section
+      id={sectionId || "pricing"}
+      className="py-24 bg-white dark:bg-zinc-950"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {heading && (
           <div className="text-center max-w-3xl mx-auto mb-16">

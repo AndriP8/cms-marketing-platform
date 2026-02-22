@@ -444,6 +444,13 @@
           },
           "optional": true
         },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "testimonials": {
           "type": "objectAttribute",
           "value": {
@@ -587,6 +594,13 @@
           },
           "optional": true
         },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "items": {
           "type": "objectAttribute",
           "value": {
@@ -648,6 +662,13 @@
           }
         },
         "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "sectionId": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
@@ -759,6 +780,13 @@
           },
           "optional": true
         },
+        "sectionId": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "features": {
           "type": "objectAttribute",
           "value": {
@@ -827,6 +855,13 @@
           }
         },
         "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "sectionId": {
           "type": "objectAttribute",
           "value": {
             "type": "string"

@@ -12,6 +12,13 @@ export const testimonialBlock = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "sectionId",
+      title: "Section ID",
+      description:
+        "Optional ID used for anchor navigation (e.g. 'testimonials' for /#testimonials)",
+      type: "string",
+    }),
+    defineField({
       name: "testimonials",
       title: "Testimonials",
       type: "array",

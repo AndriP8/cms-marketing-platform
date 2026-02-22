@@ -22,6 +22,7 @@ export const PAGE_QUERY = defineQuery(`
     blocks[] {
       ...,
       _type == "hero" => {
+        sectionId,
         heading,
         subheading,
         ctaLabel,
@@ -29,6 +30,7 @@ export const PAGE_QUERY = defineQuery(`
         image,
       },
       _type == "featureGrid" => {
+        sectionId,
         heading,
         features[] {
           icon,
@@ -37,6 +39,7 @@ export const PAGE_QUERY = defineQuery(`
         }
       },
       _type == "pricing" => {
+        sectionId,
         heading,
         plans[] {
           name,
@@ -49,6 +52,7 @@ export const PAGE_QUERY = defineQuery(`
         }
       },
       _type == "faq" => {
+        sectionId,
         heading,
         items[] {
           question,
@@ -56,6 +60,7 @@ export const PAGE_QUERY = defineQuery(`
         }
       },
       _type == "testimonial" => {
+        sectionId,
         heading,
         testimonials[] {
           quote,

@@ -8,11 +8,15 @@ export type TestimonialBlockProps = Extract<
 >;
 
 export function TestimonialBlock({
+  sectionId,
   heading,
   testimonials,
 }: TestimonialBlockProps) {
   return (
-    <section className="py-24 bg-indigo-50 dark:bg-indigo-950/20">
+    <section
+      id={sectionId || "testimonials"}
+      className="py-24 bg-indigo-50 dark:bg-indigo-950/20"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {heading && (
           <div className="text-center mb-16">

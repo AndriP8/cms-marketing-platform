@@ -1,15 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable React strict mode for catching issues early
   reactStrictMode: true,
-
-  // Image optimization — add Sanity CDN domain in Phase 2
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
   },
-
-  // Logging for debugging during development
   logging: {
     fetches: {
       fullUrl: true,

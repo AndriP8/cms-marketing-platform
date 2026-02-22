@@ -12,6 +12,13 @@ export const heroBlock = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "sectionId",
+      title: "Section ID",
+      description:
+        "Optional ID used for anchor navigation (e.g. 'hero' for /#hero)",
+      type: "string",
+    }),
+    defineField({
       name: "subheading",
       title: "Subheading",
       type: "text",

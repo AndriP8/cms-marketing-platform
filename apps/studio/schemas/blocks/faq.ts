@@ -12,6 +12,13 @@ export const faqBlock = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "sectionId",
+      title: "Section ID",
+      description:
+        "Optional ID used for anchor navigation (e.g. 'faq' for /#faq)",
+      type: "string",
+    }),
+    defineField({
       name: "items",
       title: "FAQ Items",
       type: "array",
