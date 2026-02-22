@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { GoogleTagManager } from "@next/third-parties/google";
+import { draftMode } from "next/headers";
 import { Footer } from "@/components/shared/Footer";
 import { Header } from "@/components/shared/Header";
 import { SanityLive, sanityFetch } from "@/sanity/client";
 import { SITE_CONFIG_QUERY } from "@/sanity/queries";
 import SanityVisualEditing from "@/sanity/VisualEditing";
-import { GoogleTagManager } from "@next/third-parties/google";
-import { draftMode } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

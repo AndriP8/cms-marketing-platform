@@ -70,17 +70,23 @@ export type Page = {
       _type: "image";
     };
   };
-  blocks?: Array<{
-    _key: string;
-  } & Hero | {
-    _key: string;
-  } & FeatureGrid | {
-    _key: string;
-  } & Pricing | {
-    _key: string;
-  } & Faq | {
-    _key: string;
-  } & Testimonial>;
+  blocks?: Array<
+    | ({
+        _key: string;
+      } & Hero)
+    | ({
+        _key: string;
+      } & FeatureGrid)
+    | ({
+        _key: string;
+      } & Pricing)
+    | ({
+        _key: string;
+      } & Faq)
+    | ({
+        _key: string;
+      } & Testimonial)
+  >;
 };
 
 export type Testimonial = {
@@ -291,7 +297,26 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = SiteConfig | Page | Testimonial | Faq | Pricing | FeatureGrid | Hero | LucideIcon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes =
+  | SiteConfig
+  | Page
+  | Testimonial
+  | Faq
+  | Pricing
+  | FeatureGrid
+  | Hero
+  | LucideIcon
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
+  | SanityImageAsset
+  | SanityImageMetadata
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./apps/web/src/sanity/queries.ts
 // Variable: SITE_CONFIG_QUERY
@@ -353,90 +378,96 @@ export type PAGE_QUERYResult = {
       _type: "image";
     };
   } | null;
-  blocks: Array<{
-    _key: string;
-    _type: "faq";
-    heading: string | null;
-    sectionId: string | null;
-    items: Array<{
-      question: string | null;
-      answer: string | null;
-    }> | null;
-  } | {
-    _key: string;
-    _type: "featureGrid";
-    heading: string | null;
-    sectionId: string | null;
-    features: Array<{
-      icon: string | null;
-      title: string | null;
-      body: string | null;
-    }> | null;
-  } | {
-    _key: string;
-    _type: "hero";
-    heading: string | null;
-    sectionId: string | null;
-    subheading: string | null;
-    ctaLabel: string | null;
-    ctaHref: string | null;
-    image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-  } | {
-    _key: string;
-    _type: "pricing";
-    heading: string | null;
-    sectionId: string | null;
-    plans: Array<{
-      name: string | null;
-      price: string | null;
-      interval: string | null;
-      features: Array<string> | null;
-      highlighted: boolean | null;
-      ctaLabel: string | null;
-      ctaHref: string | null;
-    }> | null;
-  } | {
-    _key: string;
-    _type: "testimonial";
-    heading: string | null;
-    sectionId: string | null;
-    testimonials: Array<{
-      quote: string | null;
-      author: string | null;
-      role: string | null;
-      avatar: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-      } | null;
-    }> | null;
-  }> | null;
+  blocks: Array<
+    | {
+        _key: string;
+        _type: "faq";
+        heading: string | null;
+        sectionId: string | null;
+        items: Array<{
+          question: string | null;
+          answer: string | null;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "featureGrid";
+        heading: string | null;
+        sectionId: string | null;
+        features: Array<{
+          icon: string | null;
+          title: string | null;
+          body: string | null;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "hero";
+        heading: string | null;
+        sectionId: string | null;
+        subheading: string | null;
+        ctaLabel: string | null;
+        ctaHref: string | null;
+        image: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        } | null;
+      }
+    | {
+        _key: string;
+        _type: "pricing";
+        heading: string | null;
+        sectionId: string | null;
+        plans: Array<{
+          name: string | null;
+          price: string | null;
+          interval: string | null;
+          features: Array<string> | null;
+          highlighted: boolean | null;
+          ctaLabel: string | null;
+          ctaHref: string | null;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "testimonial";
+        heading: string | null;
+        sectionId: string | null;
+        testimonials: Array<{
+          quote: string | null;
+          author: string | null;
+          role: string | null;
+          avatar: {
+            asset?: {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+            };
+            media?: unknown;
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            _type: "image";
+          } | null;
+        }> | null;
+      }
+  > | null;
 } | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == \"siteConfig\"][0] {\n    ...,\n    nav[] {\n      ...,\n    }\n  }\n": SITE_CONFIG_QUERYResult;
-    "\n  *[_type == \"page\" && defined(slug.current)]{\n    \"slug\": slug.current\n  }\n": ALL_PAGE_SLUGS_QUERYResult;
-    "\n  *[_type == \"page\" && slug.current == $slug][0] {\n    title,\n    seo,\n    blocks[] {\n      ...,\n      _type == \"hero\" => {\n        sectionId,\n        heading,\n        subheading,\n        ctaLabel,\n        ctaHref,\n        image,\n      },\n      _type == \"featureGrid\" => {\n        sectionId,\n        heading,\n        features[] {\n          icon,\n          title,\n          body,\n        }\n      },\n      _type == \"pricing\" => {\n        sectionId,\n        heading,\n        plans[] {\n          name,\n          price,\n          interval,\n          features,\n          highlighted,\n          ctaLabel,\n          ctaHref\n        }\n      },\n      _type == \"faq\" => {\n        sectionId,\n        heading,\n        items[] {\n          question,\n          answer\n        }\n      },\n      _type == \"testimonial\" => {\n        sectionId,\n        heading,\n        testimonials[] {\n          quote,\n          author,\n          role,\n          avatar\n        }\n      }\n    }\n  }\n": PAGE_QUERYResult;
+    '\n  *[_type == "siteConfig"][0] {\n    ...,\n    nav[] {\n      ...,\n    }\n  }\n': SITE_CONFIG_QUERYResult;
+    '\n  *[_type == "page" && defined(slug.current)]{\n    "slug": slug.current\n  }\n': ALL_PAGE_SLUGS_QUERYResult;
+    '\n  *[_type == "page" && slug.current == $slug][0] {\n    title,\n    seo,\n    blocks[] {\n      ...,\n      _type == "hero" => {\n        sectionId,\n        heading,\n        subheading,\n        ctaLabel,\n        ctaHref,\n        image,\n      },\n      _type == "featureGrid" => {\n        sectionId,\n        heading,\n        features[] {\n          icon,\n          title,\n          body,\n        }\n      },\n      _type == "pricing" => {\n        sectionId,\n        heading,\n        plans[] {\n          name,\n          price,\n          interval,\n          features,\n          highlighted,\n          ctaLabel,\n          ctaHref\n        }\n      },\n      _type == "faq" => {\n        sectionId,\n        heading,\n        items[] {\n          question,\n          answer\n        }\n      },\n      _type == "testimonial" => {\n        sectionId,\n        heading,\n        testimonials[] {\n          quote,\n          author,\n          role,\n          avatar\n        }\n      }\n    }\n  }\n': PAGE_QUERYResult;
   }
 }
