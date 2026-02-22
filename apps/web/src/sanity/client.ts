@@ -20,8 +20,8 @@ export const sanityFetch = async ({
   ...options
 }: {
   query: string;
-  params?: any;
-  [key: string]: any;
+  params?: Record<string, unknown>;
+  [key: string]: unknown;
 }) => {
   const data = await client.fetch(query, params, options);
   return { data };

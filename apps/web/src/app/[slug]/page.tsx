@@ -1,33 +1,35 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import BlockRenderer from "@/components/blocks/BlockRenderer";
+import { BlockRenderer } from "@/components/blocks/BlockRenderer";
 import { sanityFetch } from "@/sanity/client";
 import { ALL_PAGE_SLUGS_QUERY, PAGE_QUERY } from "@/sanity/queries";
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
     query: ALL_PAGE_SLUGS_QUERY,
-    perspective: "published",
-    stega: false,
   });
 
-  return (data || []).map((page: any) => ({
-    slug: page.slug,
+  const slugs = data || [];
+  return slugs.map((slugObj: { slug: string }) => ({
+    slug: slugObj.slug,
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
+export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const params = await props.params;
+  const { slug } = params;
   const { data } = await sanityFetch({
     query: PAGE_QUERY,
     params: { slug },
   });
 
-  if (!data) return {};
+  if (!data) {
+    return {
+      title: "Page Not Found",
+    };
+  }
 
   return {
     title: data.seo?.title || data.title,
@@ -35,12 +37,17 @@ export async function generateMetadata({
   };
 }
 
-export default async function DynamicPage({
-  params,
-}: {
+export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
+  const params = await props.params;
+  const { slug } = params;
+
+  // Prevent rendering the 'home' page via the generic dynamic slug route
+  if (slug === "home") {
+    notFound();
+  }
+
   const { data } = await sanityFetch({
     query: PAGE_QUERY,
     params: { slug },
