@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 import type { PageBlocks } from "./BlockRenderer";
 
@@ -112,6 +115,18 @@ export function PricingBlock({ sectionId, heading, plans }: PricingBlockProps) {
                 {plan.ctaLabel && plan.ctaHref && (
                   <Link
                     href={plan.ctaHref}
+                    onClick={() =>
+                      trackEvent({
+                        event: "pricing_click",
+                        plan_name: plan.name || "unknown",
+                        billing_cycle:
+                          plan.interval === "month"
+                            ? "monthly"
+                            : plan.interval === "year"
+                              ? "yearly"
+                              : undefined,
+                      })
+                    }
                     className={`block w-full py-4 px-6 rounded-xl font-bold text-center transition-all ${
                       plan.highlighted
                         ? "bg-white text-indigo-600 hover:bg-gray-50 shadow-md"

@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 import { urlFor } from "@/sanity/image";
 
@@ -41,6 +44,13 @@ export function HeroBlock({
                 <div className="flex flex-col gap-4 sm:flex-row">
                   <Link
                     href={ctaHref}
+                    onClick={() =>
+                      trackEvent({
+                        event: "cta_click",
+                        cta_name: ctaLabel,
+                        cta_position: "hero",
+                      })
+                    }
                     className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white transition-all bg-indigo-600 rounded-full hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap"
                   >
                     {ctaLabel}
