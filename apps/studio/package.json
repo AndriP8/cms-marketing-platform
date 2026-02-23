@@ -10,10 +10,10 @@
     "seed": "sanity exec scripts/seed.ts --with-user-token"
   },
   "dependencies": {
-    "@sanity/vision": "^3",
+    "@sanity/vision": "^5.11.0",
     "react": "^19",
     "react-dom": "^19",
-    "sanity": "^3",
+    "sanity": "^5.11.0",
     "sanity-plugin-lucide-icon-picker": "^1.0.3",
     "styled-components": "^6.1.15"
   },
