@@ -1,3 +1,3 @@
-# Placeholder for web app folder structure
-# This directory will contain CMS-related utilities (client, queries, types)
-# Added in Phase 2
+# Sanity Client & Utilities (`/sanity`)
+
+This directory is the crucial bridge between our Next.js frontend and the headless Sanity v3 CMS. All data fetching, schema extraction, and type generation occur here.

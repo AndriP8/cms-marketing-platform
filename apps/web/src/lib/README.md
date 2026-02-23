@@ -1,3 +1,4 @@
-# Placeholder for utility functions
-# Analytics, helpers, etc.
-# Added in Phase 6+
+# Library Utilities (`/lib`)
+
+This directory contains standalone utility functions, abstractions, and configuration files that provide core business logic and non-visual functionality to the application.
+

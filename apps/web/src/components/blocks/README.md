@@ -1,3 +1,3 @@
-# Placeholder for block components
-# Block components (Hero, FeatureGrid, Pricing, FAQ, Testimonial)
-# Added in Phase 3
+# Modular Block Components
+
+This directory contains the foundational building blocks of the marketing platform. Instead of creating hardcoded, rigid page templates, the entire application relies on a **Modular Block Architecture**.
