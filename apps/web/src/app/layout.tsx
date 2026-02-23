@@ -88,7 +88,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <GoogleTagManager gtmId="GTM-XXXXXXX" />
+      {process.env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      )}
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen`}
       >
