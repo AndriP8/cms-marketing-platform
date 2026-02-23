@@ -3,12 +3,19 @@ import { sanityFetch } from "@/sanity/client";
 import { SITE_CONFIG_QUERY } from "@/sanity/queries";
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-  const { data: siteConfig } = await sanityFetch({
-    query: SITE_CONFIG_QUERY,
-  });
+  let siteConfigUrl: string | undefined;
+
+  try {
+    const { data: siteConfig } = await sanityFetch({
+      query: SITE_CONFIG_QUERY,
+    });
+    siteConfigUrl = siteConfig?.siteUrl;
+  } catch (error) {
+    console.warn("Failed to fetch site config for robots.txt:", error);
+  }
 
   const baseUrl =
-    siteConfig?.siteUrl ||
+    siteConfigUrl ||
     process.env.NEXT_PUBLIC_BASE_URL ||
     "http://localhost:3000";
 

@@ -13,7 +13,7 @@ export function Header({ siteConfig }: { siteConfig: SiteConfig }) {
           {/* Logo */}
           <div className="shrink-0">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-indigo-500 to-cyan-500">
+              <span className="text-xl font-bold text-zinc-950 dark:text-white tracking-tight">
                 {siteName || "Forge"}
               </span>
             </Link>

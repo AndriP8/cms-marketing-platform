@@ -65,7 +65,7 @@ export function PricingBlock({ sectionId, heading, plans }: PricingBlockProps) {
                       <span
                         className={`text-lg font-medium ${
                           plan.highlighted
-                            ? "text-indigo-200"
+                            ? "text-indigo-100"
                             : "text-zinc-500 dark:text-zinc-400"
                         }`}
                       >
@@ -85,7 +85,7 @@ export function PricingBlock({ sectionId, heading, plans }: PricingBlockProps) {
                         aria-hidden="true"
                         className={`w-6 h-6 shrink-0 ${
                           plan.highlighted
-                            ? "text-indigo-200"
+                            ? "text-indigo-100"
                             : "text-indigo-600 dark:text-indigo-400"
                         }`}
                         fill="none"
